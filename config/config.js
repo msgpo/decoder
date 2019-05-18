@@ -12,7 +12,7 @@ module.exports = {
     },
     {
       key: 'urlencoding',
-      regex: /(?:%[0-9][0-9A-Fa-f]|%[A-Fa-f][0-9A-Fa-f]%[0-9A-Fa-f][0-9A-Fa-f])+/
+      regex: /(?:%[0-9A-Fa-f]{2})+/
     }
   ],
   block: {
