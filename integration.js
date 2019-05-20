@@ -18,17 +18,19 @@ function doLookup(entities, options, cb) {
       });
     } else if (entity.types.indexOf('custom.urlencoding') >= 0) {
       let urlstring = _decodeUrlString(entity.value);
-      lookupResults.push({
-        entity: entity,
-        data: {
-          summary: [urlstring],
-          details: {
-            type: 'urlencoding',
-            title: 'URL Encoding',
-            decodedString: urlstring
+      if (urlstring !== null) {
+        lookupResults.push({
+          entity: entity,
+          data: {
+            summary: [urlstring],
+            details: {
+              type: 'urlencoding',
+              title: 'URL Encoding',
+              decodedString: urlstring
+            }
           }
-        }
-      });
+        });
+      }
     }
   });
 
@@ -41,7 +43,12 @@ function _decodeBase64String(string) {
 }
 
 function _decodeUrlString(string) {
-  let ascii = decodeURIComponent(string);
+  let ascii = null;
+  try {
+    ascii = decodeURIComponent(string);
+  } catch (e) {
+    Logger.warn({ string }, 'Invalid URL encoded string received');
+  }
   return ascii;
 }
 
