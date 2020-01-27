@@ -8,7 +8,7 @@ module.exports = {
   customTypes: [
     {
       key: 'base64',
-      regex: /(?:[A-Za-z0-9+\/]{4})+(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?/
+      regex: /(?:[A-Za-z0-9+\/]{4}|\s)+(?:[A-Za-z0-9+\/]{2}==|[A-Za-z0-9+\/]{3}=)?/
     },
     {
       key: 'urlencoding',
@@ -22,5 +22,27 @@ module.exports = {
     template: {
       file: './templates/decoder-block.hbs'
     }
-  }
+  },
+  options: [
+    {
+      key: 'asciiOnly',
+      name: 'Only Display ASCII Printable Characters',
+      description:
+        'If checked, only text which decodes to printable ASCII characters will be displayed (ASCII codes between 32 and 127.',
+      default: true,
+      type: 'boolean',
+      userCanEdit: true,
+      adminOnly: false
+    },
+    {
+      key: 'minLength',
+      name: 'Minimum Input Length',
+      description:
+        'The minimum text input length for a string to be converted from base64 and displayed.',
+      default: 15,
+      type: 'number',
+      userCanEdit: true,
+      adminOnly: false
+    }
+  ]
 };
