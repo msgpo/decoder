@@ -2,6 +2,7 @@ module.exports = {
   name: 'Decoder',
   acronym: 'DECODE',
   description: 'Identifies encoded strings and decodes them',
+  onDemandOnly: true,
   logging: {
     level: 'info' //trace, debug, info, warn, error, fatal
   },
